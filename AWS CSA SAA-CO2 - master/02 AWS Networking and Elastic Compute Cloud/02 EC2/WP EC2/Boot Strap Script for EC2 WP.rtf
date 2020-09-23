@@ -1,0 +1,25 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+#!/bin/bash\
+yum update -y\
+yum install httpd php php-mysql -y\
+cd /var/www/html\
+echo "healthy" > healthy.html\
+wget https://wordpress.org/wordpress-5.1.1.tar.gz\
+tar -xzf wordpress-5.1.1.tar.gz\
+cp -r wordpress/* /var/www/html/\
+rm -rf wordpress\
+rm -rf wordpress-5.1.1.tar.gz\
+chmod -R 755 wp-content\
+chown -R apache:apache wp-content\
+wget https://s3.amazonaws.com/bucketforwordpresslab-donotdelete/htaccess.txt\
+mv htaccess.txt .htaccess\
+chkconfig httpd on\
+service httpd start}

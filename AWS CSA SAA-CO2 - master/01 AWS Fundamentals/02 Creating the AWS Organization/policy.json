@@ -1,0 +1,33 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Sid": "BucketListing",
+          "Effect": "Allow",
+          "Action": [
+              "s3:ListAllMyBuckets",
+              "s3:GetBucketLocation"
+          ],
+          "Resource": "arn:aws:s3:::*"
+      },
+      {
+          "Sid": "ListObjectsInBucket",
+          "Effect": "Allow",
+          "Action": [
+              "s3:ListBucket"
+          ],
+          "Resource": [
+              "arn:aws:s3:::scubasyndrome-aaa",
+              "arn:aws:s3:::scubasyndrome-bbb"
+          ]
+      },
+      {
+          "Sid": "AllObjectActions",
+          "Effect": "Allow",
+          "Action": "s3:*Object",
+          "Resource": [
+              "arn:aws:s3:::scubasyndrome-aaa/*"
+          ]
+      }
+  ]
+}
